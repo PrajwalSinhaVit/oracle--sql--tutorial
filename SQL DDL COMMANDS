@@ -1,0 +1,185 @@
+create alter and drop the table using ddl command in oracle sql.
+data definition language commands (ddl)
+ddl commands are used to alter the table.
+we can perform 4 basic operations as per the video using alter commands which are:
+a. adding a column: alter table employee add gender varchar2(20);
+b. removing a column: alter table employee drop column gender;
+c. changing a data type: alter table employee modify id varchar2(20);
+d. renaming a column: alter table employee rename id to employee_id;
+we use desc tablename to view the created columns with there datatype.
+Dropping the table means you are deleting the entire table with its data.
+now the insertion in table comes under the dml command that is data manipulation language.
+
+
+SQL> create table employee(id number, name varchar2(10),address varchar2(10),phone varchar2(10));
+
+Table created.
+
+SQL> desc employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER
+ NAME                                               VARCHAR2(10)
+ ADDRESS                                            VARCHAR2(10)
+ PHONE                                              VARCHAR2(10)
+
+SQL> alter table employee add gender varchar2(10);
+
+Table altered.
+
+SQL> desc employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER
+ NAME                                               VARCHAR2(10)
+ ADDRESS                                            VARCHAR2(10)
+ PHONE                                              VARCHAR2(10)
+ GENDER                                             VARCHAR2(10)
+
+SQL> alter table employee drop column gender;
+
+Table altered.
+
+SQL> desc
+Usage: DESCRIBE [schema.]object[@db_link]
+SQL> desc employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER
+ NAME                                               VARCHAR2(10)
+ ADDRESS                                            VARCHAR2(10)
+ PHONE                                              VARCHAR2(10)
+
+SQL> alter table employee modify id varchar2(10);
+
+Table altered.
+
+SQL> desc employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 VARCHAR2(10)
+ NAME                                               VARCHAR2(10)
+ ADDRESS                                            VARCHAR2(10)
+ PHONE                                              VARCHAR2(10)
+
+SQL> alter table employee rename column id to employee_id;
+
+Table altered.
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPLOYEE_ID                                        VARCHAR2(10)
+ NAME                                               VARCHAR2(10)
+ ADDRESS                                            VARCHAR2(10)
+ PHONE                                              VARCHAR2(10)
+
+SQL> drop table employee;
+
+Table dropped.
+
+SQL> desc employee;
+ERROR:
+ORA-04043: object employee does not exist
+
+
+SQL> create table employee(id number, name varchar2(10),address varchar2(10),phone varchar2(10));
+
+Table created.
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER
+ NAME                                               VARCHAR2(10)
+ ADDRESS                                            VARCHAR2(10)
+ PHONE                                              VARCHAR2(10)
+
+SQL> insert into employee values (111,'satish','vellore','87777888');
+
+1 row created.
+
+SQL> select * from employee;
+
+        ID NAME       ADDRESS    PHONE
+---------- ---------- ---------- ----------
+       111 satish     vellore    87777888
+
+SQL> insert into employee values (112,'ram','chennai','8789858');
+
+1 row created.
+
+SQL> select * from employee;
+
+        ID NAME       ADDRESS    PHONE
+---------- ---------- ---------- ----------
+       111 satish     vellore    87777888
+       112 ram        chennai    8789858
+
+SQL> insert into employee values (113,'tom','931291219');
+insert into employee values (113,'tom','931291219')
+            *
+ERROR at line 1:
+ORA-00947: not enough values
+
+
+SQL> insert into employee values(id,name,phone) values (113,'tom','77777');
+insert into employee values(id,name,phone) values (113,'tom','77777')
+                                           *
+ERROR at line 1:
+ORA-00933: SQL command not properly ended
+
+
+SQL> insert into employee(id,name,phone) values (113,'tom','77777');
+
+1 row created.
+
+SQL> select * from employee;
+
+        ID NAME       ADDRESS    PHONE
+---------- ---------- ---------- ----------
+       111 satish     vellore    87777888
+       112 ram        chennai    8789858
+       113 tom                   77777
+
+SQL> alter table employee modify id varchar2(10);
+alter table employee modify id varchar2(10)
+                            *
+ERROR at line 1:
+ORA-01439: column to be modified must be empty to change datatype
+
+
+SQL> update employee set id=null;
+
+3 rows updated.
+
+SQL> select * from employee;
+
+        ID NAME       ADDRESS    PHONE
+---------- ---------- ---------- ----------
+           satish     vellore    87777888
+           ram        chennai    8789858
+           tom                   77777
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 NUMBER
+ NAME                                               VARCHAR2(10)
+ ADDRESS                                            VARCHAR2(10)
+ PHONE                                              VARCHAR2(10)
+
+SQL> alter table employee modify id varchar2(
+  2  10);
+
+Table altered.
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 VARCHAR2(10)
+ NAME                                               VARCHAR2(10)
+ ADDRESS                                            VARCHAR2(10)
+ PHONE                                              VARCHAR2(10)
+
+SQL> d
